@@ -1,21 +1,23 @@
 package com.codeup.codeupspringblog;
 
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HelloController {
+
     @GetMapping("/hello")
-    @ResponseBody
-    public String hello() {
-        return "Hello from Spring!";
+    public String hello(Model model) {
+        model.addAttribute("name", "World");
+        return "hello";
     }
 
-
     @GetMapping("/hello/{name}")
-    @ResponseBody
-    public String sayHello(@PathVariable String name) {
-        return "Hello " + name + "!";
+    public String sayHello(@PathVariable String name, Model model) {
+        model.addAttribute("name", name);
+        return "hello";
     }
 
     @RequestMapping(path = "/increment/{number}", method = RequestMethod.GET)
@@ -25,9 +27,12 @@ public class HelloController {
     }
 
     @GetMapping("/exponent/{num}/{power}")
-    @ResponseBody
-    public String exponent(@PathVariable int num, @PathVariable int power){
-        return String.format("%d to the %d is %d", num, power, (int) (Math.pow(num,power)));
+
+    public String exponent(@PathVariable int num, @PathVariable int power, Model model){
+        model.addAttribute("num", num);
+        model.addAttribute("power", power);
+        model.addAttribute("num2", (int) Math.pow(num, power));
+        return "exponent";
     }
 
 }
