@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head ('Viewing an Ad')">
+
+  <title>Single Ad</title>
+</head>
+<body>
+<h1 th:text="${post.title}"></h1>
+<p th:text="${post.description}"></p>
+
+</body>
+</html>
+

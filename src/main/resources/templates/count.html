@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Count Numbers</title>
+</head>
+<body>
+
+    <ul>
+        <li th:each="number : ${numbers}">
+            <span th:text="${number}"></span>
+        </li>
+    </ul>
+
+</body>
+</html>
