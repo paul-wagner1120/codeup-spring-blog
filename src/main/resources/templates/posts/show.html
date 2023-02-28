@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials :: head ('Viewing an Ad')">
-
+<head>
   <title>Single Ad</title>
 </head>
 <body>
 <h1 th:text="${post.title}"></h1>
 <p th:text="${post.body}"></p>
+<p th:text="${post.user.email}"></p>
 
 </body>
 </html>

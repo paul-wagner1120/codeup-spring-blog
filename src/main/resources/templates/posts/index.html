@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <title>All Posts</title>
 </head>
-<body>
+<body>  
+
+
 
     <div th:each="post : ${posts}">
-       <p th:text="${post.title}"></p>
+        <a th:href="@{posts/{id} (id = ${post.id})}"><h1 th:text="${post.title}"></h1></a>
         <p th:text="${post.body}"></p>
     </div>
 
