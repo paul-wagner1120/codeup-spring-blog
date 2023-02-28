@@ -7,10 +7,12 @@
 <body>
 
     <div>
-        <form action="/posts/create" method="post">
+        <form th:action="@{/posts/save}" th:method="post" th:object="${post}">
 
-            <input type="text" name="title" id="title"> <br>
-            <textarea name="body" id="body" cols="30" rows="10"></textarea> <br>
+            <input type="text" name="title" id="title" th:field="*{title}"> <br>
+            <textarea name="body" id="body" th:field="*{body}" cols="30" rows="10"></textarea><br>
+            <input type="hidden" th:field="*{id}">
+            <br>
             <button type="submit">Submit Post</button>
 
         </form>
