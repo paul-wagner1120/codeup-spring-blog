@@ -9,31 +9,30 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Service("mailService")
+@Service("EmailService")
 public class EmailService {
 
     @Autowired
-    public JavaMailSender emailSender;
+    public JavaMailSender javaMailSender;
 
     @Value("${spring.mail.from}")
     private String from;
 
-//    @Value("${CUSTOM_KEY}")
-//    private String customKey;
+    @Value("${CUSTOM_KEY}")
+    private String customKey;
 
-    public void prepareAndSend(Post post) {
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setFrom(from);
-        msg.setTo(post.getUser().getEmail());
-        msg.setSubject(post.getTitle());
-        msg.setText(post.getBody());
+
+    public void preparedAndSendPost(Post post){
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(from);
+        message.setTo(post.getUser().getEmail());
+        message.setSubject("Post created");
+        message.setText(String.format("Post title: '%s'%nPost body: '%s'", post.getTitle(), post.getBody()));
 
         try{
-            this.emailSender.send(msg);
-        }
-        catch (MailException ex) {
-            // simply log it and go on...
-            System.err.println(ex.getMessage());
+            this.javaMailSender.send(message);
+        } catch(MailException ex){
+            System.out.println(ex.getMessage());
         }
     }
 }
